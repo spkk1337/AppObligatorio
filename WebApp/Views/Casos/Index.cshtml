@@ -9,11 +9,16 @@
         <ul>
             @foreach (Caso c in ViewBag.listaCasos)
             {
-                <li>@c.ToString()</li>
-                if (Context.Session.GetString("rol") == "Fiscal")
-                {
-                    <p>@c.CalcularRecomendacion()</p>
-                }
+                <li>
+                    @c.ToString()
+                    @if (Context.Session.GetString("rol") == "Fiscal")
+                    {
+                        <div>
+                            <a asp-controller="Casos" asp-action="Detalles" asp-route-id="@c.Id"
+                               class="btn btn-primary btn-sm mt-1">Ver detalles</a>
+                        </div>
+                    }
+                </li>
             }
         </ul>
     }

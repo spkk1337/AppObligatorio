@@ -1,0 +1,25 @@
+﻿@using Dominio.Entidades
+@model Caso
+
+<h1>Detalles del caso</h1>
+
+<p><strong>Id:</strong> @Model.Id</p>
+<p><strong>Nombre:</strong> @Model.Nombre</p>
+<p><strong>Descripción:</strong> @Model.Descripcion</p>
+<p><strong>Estado:</strong> @(Model.Cerrado ? "Cerrado" : "Abierto")</p>
+<p><strong>Sospechoso principal:</strong> @Model.SospechosoPrincipal.Nombre</p>
+<p><strong>Detective:</strong> @Model.Investigador.Nombre</p>
+<p><strong>Peso total de evidencias:</strong> @Model.CalcularPesoEvidencias()</p>
+
+<h4>Evidencias</h4>
+<ul>
+    @foreach (Evidencia e in Model.Evidencias)
+    {
+        <li>@e.ToString()</li>
+    }
+</ul>
+
+<h4>Recomendación</h4>
+<div class="alert alert-info">@Model.CalcularRecomendacion()</div>
+
+<a asp-controller="Casos" asp-action="Index" class="btn btn-secondary">Volver al listado</a>

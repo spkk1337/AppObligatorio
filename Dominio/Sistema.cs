@@ -115,6 +115,18 @@ public class Sistema
         return null;
     }
 
+    public Caso ObtenerCasoPorId(int id)
+    {
+        foreach (Caso c in _casos)
+        {
+            if (c.Id == id)
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+
     public List<Caso> ObtenerCasosPorInvestigador(string email)
     {
         List<Caso> _casosInvestigador = new List<Caso>();

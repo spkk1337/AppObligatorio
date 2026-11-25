@@ -75,5 +75,20 @@ namespace WebApp.Controllers
             }
         }
 
+        public IActionResult Detalles(int id)
+        {
+            if (HttpContext.Session.GetString("rol") != Rol.Fiscal.ToString())
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            Caso caso = s.ObtenerCasoPorId(id);
+            if (caso == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(caso);
+        }
     }
 }

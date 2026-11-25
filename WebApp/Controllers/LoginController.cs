@@ -35,12 +35,12 @@ namespace WebApp.Controllers
                 else
                 {
                     throw new Exception("Email y contraseña son requeridos");
-                    return View("Index");
                 }
             } 
             catch (Exception ex)
             {
                 ViewBag.msg = ex.Message;
+                return View("Index");
             }
             return RedirectToAction("Index");
         }
