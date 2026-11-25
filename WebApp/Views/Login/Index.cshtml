@@ -1,0 +1,15 @@
+﻿<h1>Login</h1>
+
+<form asp-action="Login" method="post">
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control"name="email" required>
+    </div>
+    <div class="form-rol">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control"name="pass" required>
+    </div>
+    <input type="submit" value="Ingresar">
+</form>
+
+<p>@ViewBag.msg</p>

@@ -1,0 +1,48 @@
+@using Dominio.Entidades;
+@Model Investigador
+@Model Sospechoso
+
+
+<h1>Alta de caso</h1>
+
+<form asp-controller="Casos" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input id="nombre" name="nombre" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label for="desc" class="form-label">Descripción</label>
+        <textarea id="desc" name="desc" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="sospechosoCedula" class="form-label">Sospechoso principal</label>
+        <select id="sospechosoCedula" name="sospechosoCedula" class="form-select">
+            <option value="">Seleccione un sospechoso</option>
+            @foreach(Sospechoso s in ViewBag.Sospechosos){
+                <option value="@s.Cedula">@s.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+         <label for="investigadorEmail" class="form-label">Detective asignado</label>
+         <select id="investigadorEmail" name="investigadorEmail" class="form-select" required>
+             <option value="">Seleccione un detective</option>
+             @foreach (Investigador i in ViewBag.Investigadores)
+             {
+                 if(i.Rol == Rol.Detective){
+                     <option value="@i.Email">@i.Nombre</option>
+                 }
+             }
+         </select>
+     </div>
+    <div class="form-check mb-3">
+        <input id="cerrado" name="cerrado" type="checkbox" value="true" class="form-check-input" />
+        <label for="cerrado" class="form-check-label">Caso cerrado</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear caso</button>
+</form>
+
+@if (ViewBag.msg != null)
+{
+    <p class="text-danger">@ViewBag.msg</p>
+}

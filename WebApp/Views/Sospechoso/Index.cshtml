@@ -1,0 +1,27 @@
+﻿@using Dominio.Entidades
+@model Sospechoso;
+@if (Context.Session.GetString("rol") == "Detective" || Context.Session.GetString("rol") == "Fiscal")
+{
+    <h1>Listado Sospechosos</h1>
+    @if (ViewBag.listaSospechosos != null)
+    {
+        <ul>
+            @foreach (Sospechoso s in ViewBag.listaSospechosos)
+            {
+                <li>@s.Nombre - @s.FechaNacimiento.Year</li>      
+            }
+        </ul>
+    }
+
+    <form asp-controller="Sospechoso" asp-action="Filtrar" method="get">
+        <label for="edad">Edad:</label>
+        <input id="edad" name="edad" type="number" min="0" value="@ViewBag.edad" />
+        <input type="submit" value="Filtrar">
+    </form>
+}
+else
+{
+    <h1>No tienes permisos para ver el listado de sospechosos.</h1>
+}
+
+<p>@ViewBag.msg</p>

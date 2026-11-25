@@ -1,0 +1,30 @@
+﻿@using Dominio;
+@using Dominio.Entidades
+@model Sistema;
+@if (Context.Session.GetString("rol") == "Detective" || Context.Session.GetString("rol") == "Fiscal")
+{
+    <h1>Listado Casos</h1>
+    @if (ViewBag.listaCasos != null)
+    {
+        <ul>
+            @foreach (Caso c in ViewBag.listaCasos)
+            {
+                <li>@c.ToString()</li>
+                if (Context.Session.GetString("rol") == "Fiscal")
+                {
+                    <p>@c.CalcularRecomendacion();</p>
+                }
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No se han encontrado casos disponibles</p>
+    }
+
+}
+else
+{
+    <h1>No tienes permisos para ver el listado de casos.</h1>
+}
+<p>@ViewBag.msg</p>

@@ -1,0 +1,13 @@
+﻿@using Dominio.Entidades;
+@model Investigador;
+
+<h1>Mi perfil</h1>
+
+@if (Model != null)
+{
+    <p>Nombre: @Model.Nombre</p>
+    <p>Email: @Model.Email</p>
+    <p>Rol: @Model.Rol</p>
+}
+
+<p>@ViewBag.msg</p>
