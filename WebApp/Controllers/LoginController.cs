@@ -30,7 +30,7 @@ namespace WebApp.Controllers
 
                     HttpContext.Session.SetString("user", i.Email);
                     HttpContext.Session.SetString("rol", i.Rol.ToString());
-                    return RedirectToAction("Index", "Investigador");
+                    return RedirectToAction("Index", "Casos");
                 }
                 else
                 {

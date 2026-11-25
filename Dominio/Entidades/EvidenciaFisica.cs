@@ -9,6 +9,8 @@ public class EvidenciaFisica : Evidencia
         _huellasDigitales = huellasDigitales;
     }
 
+
+
     public override int CalcularPeso()
     {
         int peso = base.CalcularPeso();

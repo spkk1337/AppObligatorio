@@ -109,6 +109,7 @@ public class Caso : iValidable
         _evidencias.Add(e);
     }
 
+
     public void Validar()
     {
         ValidarNombre();

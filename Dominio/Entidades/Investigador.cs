@@ -2,7 +2,7 @@ using Dominio.Interface;
 
 namespace Dominio.Entidades;
 
-public class Investigador
+public class Investigador : iValidable
 {
     private string _email;
     private string _contrasena;
@@ -44,6 +44,29 @@ public class Investigador
             return true;
         } 
         return false;
+    }
+
+    public void Validar()
+    {
+        ValidarMail();
+        ValidarPass();
+        ValidarNombre();
+    }
+
+    private void ValidarMail()
+    {
+        if (string.IsNullOrEmpty(_email)) throw new Exception("El mail no puede ser vacio");
+        if (!_email.Contains("@")) throw new Exception("El mail debe contener arroba");
+    }
+
+    private void ValidarPass()
+    {
+        if (string.IsNullOrEmpty(_contrasena)) throw new Exception("La contraseña no puede ser vacio");
+    }
+
+    private void ValidarNombre()
+    {
+        if (string.IsNullOrEmpty(_nombre)) throw new Exception("El nombre no puede ser vacio");
     }
     
     public override bool Equals(object? obj)

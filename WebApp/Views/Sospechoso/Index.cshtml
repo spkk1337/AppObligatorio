@@ -1,5 +1,5 @@
 ﻿@using Dominio.Entidades
-@model Sospechoso;
+
 @if (Context.Session.GetString("rol") == "Detective" || Context.Session.GetString("rol") == "Fiscal")
 {
     <h1>Listado Sospechosos</h1>
@@ -8,7 +8,7 @@
         <ul>
             @foreach (Sospechoso s in ViewBag.listaSospechosos)
             {
-                <li>@s.Nombre - @s.FechaNacimiento.Year</li>      
+                <li>@s.Nombre - @s.obtenerEdad()</li>      
             }
         </ul>
     }

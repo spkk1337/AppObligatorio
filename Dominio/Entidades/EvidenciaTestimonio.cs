@@ -11,6 +11,8 @@ public class EvidenciaTestimonio : Evidencia
         _credibilidad = credibilidad;
     }
 
+
+
     public override int CalcularPeso()
     {
         int peso = base.CalcularPeso();
@@ -20,8 +22,6 @@ public class EvidenciaTestimonio : Evidencia
         }
         return peso;
     }
-
-    public static string Evidencia { get; set; }
 
     public override string ToString()
     {

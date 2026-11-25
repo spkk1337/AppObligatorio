@@ -25,7 +25,6 @@ namespace WebApp.Controllers
         {
             try
             {
-                List<Sospechoso> lista = s.ListaDeSospechosos();
                 List<Sospechoso> listaFiltrada = s.FiltrarSospechososXEdad(edad);
                 ViewBag.listaSospechosos = listaFiltrada;
             }
@@ -33,6 +32,7 @@ namespace WebApp.Controllers
             {
                 ViewBag.msg = ex.Message;
             }
+            ViewBag.edad = edad;
             return View("Index");
         }
     }

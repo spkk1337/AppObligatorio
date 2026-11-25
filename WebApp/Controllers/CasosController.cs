@@ -48,21 +48,14 @@ namespace WebApp.Controllers
         public IActionResult Create(string nombre, string desc, bool cerrado, string sospechosoCedula, string investigadorEmail)
         {
             if (HttpContext.Session.GetString("rol") != Rol.Fiscal.ToString())
-        {
-                return RedirectToAction("Index", "Login");
-            }
-
-            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(desc))
             {
-                ViewBag.msg = "El nombre y la descripción son requeridos.";
-                ViewBag.Sospechosos = s.Sospechosos;
-                ViewBag.Investigadores = s.Investigadores;
-                return View();
+                return RedirectToAction("Index", "Login");
             }
 
             try
             {
                 Caso caso = new Caso(nombre, desc, cerrado, s.ObtenerSospechosoXCedula(sospechosoCedula), s.ObtenerInvestigadorXMail(investigadorEmail), new List<Evidencia>());
+                caso.Validar();
                 s.AltaCaso(caso);
                 return RedirectToAction("Index");
             }

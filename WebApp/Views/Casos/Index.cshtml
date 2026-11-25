@@ -1,6 +1,6 @@
 ﻿@using Dominio;
 @using Dominio.Entidades
-@model Sistema;
+
 @if (Context.Session.GetString("rol") == "Detective" || Context.Session.GetString("rol") == "Fiscal")
 {
     <h1>Listado Casos</h1>

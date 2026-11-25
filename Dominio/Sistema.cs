@@ -50,7 +50,7 @@ public class Sistema
     public void AltaInvestigador(Investigador i)
     {
         if(i == null) throw new Exception("Investigador null");
-            if(_investigadores.Equals(i)) throw new Exception("Investigador ya existe");
+            if(_investigadores.Contains(i)) throw new Exception("Investigador ya existe");
         
         _investigadores.Add(i);
     }
@@ -288,40 +288,41 @@ public class Sistema
             CrearEvidencias("Contrabando de mercadería")));
     }
 
-
     // Crea cuatro evidencias de tres clases diferentes.
+
     private List<Evidencia> CrearEvidencias(string contexto)
     {
         List<Evidencia> evidencias = new List<Evidencia>();
 
-        // Evidencia física 1
-        
-        DateTime FechaEvidencia = DateTime.Now.AddDays(-10);
-        string descripcion = "Huella dactilar encontrada. Caso: " + contexto;
-        EvidenciaFisica e1 = new EvidenciaFisica(descripcion, FechaEvidencia, true);
-        evidencias.Add(e1);
+        evidencias.Add(new EvidenciaFisica(
+            "Huella dactilar. Caso: " + contexto,
+            DateTime.Now.AddDays(-10),
+            true
+        ));
 
-        // Evidencia física 2
-        DateTime FechaEvidencia2 = DateTime.Now.AddDays(-9);
-        string descripcion2 = "Objeto recolectado en la escena. Caso: " + contexto;
-        EvidenciaFisica e2 = new EvidenciaFisica(descripcion2, FechaEvidencia2, true);
-        evidencias.Add(e2);
+        evidencias.Add(new EvidenciaFisica(
+            "Objeto recolectado. Caso: " + contexto,
+            DateTime.Now.AddDays(-9),
+            true
+        ));
 
-        // Evidencia de grabación
-        DateTime FechaEvidencia3 = DateTime.Now.AddDays(-8);
-        string descripcion3 = "Grabación de cámara de seguridad. Caso: " + contexto;
-        int calidad = 2;
-        EvidenciaGrabacion e3 = new EvidenciaGrabacion(descripcion3, FechaEvidencia3, calidad, true);
-        evidencias.Add(e3);
+        evidencias.Add(new EvidenciaGrabacion(
+            "Cámara de seguridad. Caso: " + contexto,
+            DateTime.Now.AddDays(-8),
+            2,
+            true
+        ));
 
-        // Evidencia testimonial
-        DateTime FechaEvidencia4 = DateTime.Now.AddDays(-7);
-        string descripcion4 = "Declaración de un testigo. Caso: " + contexto;
-        EvidenciaTestimonio e4 = new EvidenciaTestimonio(descripcion4, FechaEvidencia4, "Pedro", Credibilidad.Medio);
-        evidencias.Add(e4);
+        evidencias.Add(new EvidenciaTestimonio(
+            "Declaración de testigo. Caso: " + contexto,
+            DateTime.Now.AddDays(-7),
+            "Pedro",
+            Credibilidad.Medio
+        ));
 
         return evidencias;
     }
+
 
     public List<Caso> ListaDeCasosOrdenados()
     {
@@ -342,17 +343,5 @@ public class Sistema
             retorno.Add(s);
         }
         return retorno;
-    }
-
-    public Investigador BuscarInvestigadorXMail(string mail)
-    {
-        foreach(Investigador i in _investigadores)
-        {
-            if(i.Email == mail)
-            {
-                return i;
-            }
-        }
-        return null;
     }
 }

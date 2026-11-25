@@ -10,7 +10,9 @@ public class EvidenciaGrabacion : Evidencia
         _calidad = calidad;
         _infraganti = infraganti;
     }
-    
+
+
+
     public override int CalcularPeso()
     {
         int peso = base.CalcularPeso();

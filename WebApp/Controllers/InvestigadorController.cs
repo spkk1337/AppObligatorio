@@ -21,15 +21,10 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Create(string nombre, string email, string pass)
         {
-            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(email) || string.IsNullOrEmpty(pass))
-            {
-                ViewBag.msg = "Nombre, email y contraseña son requeridos.";
-                return View();
-            }
-
             try
             {
                 Investigador investigador = new Investigador(email, pass, nombre, Rol.Detective);
+                investigador.Validar();
                 s.AltaInvestigador(investigador);
                 return RedirectToAction("Index", "Login");
             }
@@ -49,7 +44,7 @@ namespace WebApp.Controllers
 
             try
             {
-                Investigador investigador = s.BuscarInvestigadorXMail(HttpContext.Session.GetString("user"));
+                Investigador investigador = s.ObtenerInvestigadorXMail(HttpContext.Session.GetString("user"));
                 return View(investigador);
             }
             catch (Exception ex)
