@@ -50,7 +50,7 @@ public class Sistema
     public void AltaInvestigador(Investigador i)
     {
         if(i == null) throw new Exception("Investigador null");
-            if(_investigadores.Contains(i)) throw new Exception("Investigador ya existe");
+            if(_investigadores.Equals(i)) throw new Exception("Investigador ya existe");
         
         _investigadores.Add(i);
     }
@@ -318,7 +318,7 @@ public class Sistema
         {
             retorno.Add(v);
         }
-        retorno.Sort();
+        retorno.Sort(new CasosOrdenAsc());
         return retorno;
     }
 

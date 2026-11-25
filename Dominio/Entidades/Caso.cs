@@ -89,19 +89,14 @@ public class Caso : iValidable
         
         if(peso < 30)
         {
-            return $"El caso {_nombre} carece de fundamentos. El peso de la prueba es {peso} y deberia ser desestimado finalizando la investigacion en contra de {_sospechosoPrincipal.Nombre}";
-        }else if(peso >= 30 && peso <= 70)
-        {
-            return $"El caso {_nombre} tiene fundamentos. El peso de la prueba es {peso} y deberia ser investigado con cautela en contra de {_sospechosoPrincipal.Nombre}";
+            return $"DESESTIMADO: El caso {_nombre} carece de fundamentos. El peso de la prueba es {peso} y deberia ser desestimado finalizando la investigacion en contra de {_sospechosoPrincipal.Nombre}";
         }
-        else if (peso > 70)
-        {
-            return $"IMPUTACION INMINENTE: El caso {_nombre} esta resuelto. El peso de la prueba es {peso} y deberia imputarse a {_sospechosoPrincipal.Nombre} inmediatamente";
-        }
-        else
+        else if(peso >= 30 && peso <= 70)
         {
             return $"CONTINUAR INVESTIGANDO: El caso {_nombre} parece ir por el camino correcto, pero necesita mas investigacion. El peso de la prueba es {peso} pero aun no hay informacion suficiente para imputar a {_sospechosoPrincipal.Nombre}";
         }
+
+            return $"IMPUTACION INMINENTE: El caso {_nombre} esta resuelto. El peso de la prueba es {peso} y deberia imputarse a {_sospechosoPrincipal.Nombre} inmediatamente";
     }
 
     public void AltaEvidencia(Evidencia e)
